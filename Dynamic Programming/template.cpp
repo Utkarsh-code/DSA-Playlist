@@ -1,4 +1,3 @@
-//c++ template for competitive programming
 #include<bits/stdc++.h>
 using namespace std;
 #define  int long long 
@@ -23,6 +22,7 @@ int pown(int x, int y){
 
 void solve(){
     
+        
 }
 
 signed main(){

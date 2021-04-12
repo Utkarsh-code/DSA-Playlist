@@ -9,6 +9,7 @@ int party(int sum, int fun, int idx, vector<pi>&arr){
     if(idx==arr.size()) return 0;
     if(sum<=0) return 0;
     if(dp[idx][sum]!=-1) return dp[idx][sum];
+    
     int cost=arr[idx].first;
     int new_fun=arr[idx].second;
 
