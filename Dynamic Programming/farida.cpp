@@ -33,7 +33,7 @@ void solve(){
     int arr[n];
     for(int i=0; i<n; i++) cin>>arr[i];
     
-    memset(dp, -1, sizeof(dp));
+    fill(dp, dp+n, -1);
     int ans=farida(0, arr, n);
     cout<<ans<<"\n";
         
