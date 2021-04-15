@@ -1,9 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define  int long long 
-#define  vi vector<int>
-#define  pi pair<int, int>
-#define  pii pair<int, pair<int, int>>
+
 
 int mod=1e9+7;
 int inf=1e18;
