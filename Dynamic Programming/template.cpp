@@ -20,7 +20,7 @@ int pown(int x, int y){
 
 void solve(){
 
-        
+          
 }
 
 signed main(){
