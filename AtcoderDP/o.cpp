@@ -17,7 +17,7 @@ int pown(int x, int y){
     }
     return res;
 }
-int n;
+/*int n;
 int man[1000], woman[1000];
 int grid[1000][1000];
 int ans=0;
@@ -40,22 +40,58 @@ void cnt_pair(int x, int y){
           man[x]=0;
           woman[i]=0;
     }
+}*/
+/*void add(int& a, int b){
+    a+=b;
+    if(a>=mod)
+    a-=mod;
+}*/
+int n;
+int grid[23][23];
+int dp[(1<<23)];
+int bitmaskdp(int mask){
+    int cnt=__builtin_popcount(mask);
+    if(cnt==n) return dp[mask]=1;
+    if(dp[mask]!=-1) return dp[mask];
+    int ans=0;
+    for(int i=0; i<n; i++){
+        if(mask&(1<<i)==0 && grid[cnt][i]){
+            ans+=bitmaskdp(mask|(1<<i));
+        }
+    }
+    return dp[mask]=ans;
 }
 void solve(){
-  cin>>n;
+   cin>>n;
 
   for(int i=0; i<n; i++){
       for(int j=0; j<n; j++){
           cin>>grid[i][j];
       }
   } 
-  cnt_pair(0, 0);
-    for(int i=0; i<n; i++){
-        memset(man, 0, sizeof(man));
-        memset(woman, 0, sizeof(woman));
-      //  if(grid[0][i]==1) {cout<<"utk "; cnt_pair(0, i);}
-    }    
-    cout<<ans<<"\n"; 
+   // recursive dp
+   memset(dp, -1, sizeof(dp));
+  // dp[0]=1;
+   int ans=bitmaskdp(0);  // not correct 
+   //ans=dp[(1<<n)-1];
+   cout<<ans<<"\n";
+
+   //iterative dp
+   /*int dp[1<<n]={0};
+   dp[0]=1;
+
+   for(int mask=0; mask<(1<<n)-1; mask++){
+       int a=__builtin_popcount(mask);
+      // a=n-a;
+       for(int b=0; b<n; b++){
+           if(grid[a][b] && (mask&(1<<b))==0){
+               int new_mask=(mask)|(1<<b);
+               dp[new_mask]=(dp[mask]+dp[new_mask])%mod;
+           }
+       }
+
+   } 
+   cout<<dp[(1<<n) -1]<<"\n";*/
 }
 
 signed main(){
