@@ -20,35 +20,32 @@ int pown(int x, int y){
     return res;
 }
 unordered_map<int, vector<int>> edge;
-int vis[100010];
 vector<int> ans;
-int backtrack=0, backnode=-1, cycle_mila=0;
-void dfs(int src, int cnt, int par){
-    vis[src]=cnt;
+int backnode=-1;
+int found=0;
+void dfs(int src, int vis[], int rec[]){
+    
+    vis[src]=1;
 
-    for(int nbr:edge[src]){
-        if(nbr==par) continue;
-
-        if(vis[nbr]==-1) dfs(nbr, cnt+1, src);
+    for(int x:edge[src]){
+        if(!vis[x]) dfs(x, vis, rec);
         else{
-            int cycle_size=(cnt+1)-vis[nbr];
-            ans.push_back(nbr);
+            ans.push_back(x);
             ans.push_back(src);
-            if(cycle_size>=2){
-              cycle_mila=1;
-              backnode=nbr;
-              backtrack=1;
-              return;
-            }
+            backnode=x;
+            return;
         }
+        
+        if(backnode!=-1){
 
-        if(backtrack){
-            ans.push_back(src);
-            if(src==backnode) backtrack=0;
+            if(found==0){
+                ans.push_back(src);
+                if(src==backnode) found=1;
+            }
+            return;
         }
-        if(cycle_mila) return;
     }
-    //if(cycle_mila) return;
+    return;
 }
 void solve(){
     int n, m;
@@ -59,23 +56,28 @@ void solve(){
         cin>>a>>b;
 
         edge[a].push_back(b);
-       // edge[b].push_back(a);
     }
-    memset(vis, -1, sizeof(vis));
+
+    int vis[n+1]={0};
+    int rec[n+1]={0};
+    int fl=0;
     for(int i=1; i<=n; i++){
-        if(vis[i]==-1){
-            dfs(i,0, -1);
-            if(cycle_mila) break;
-        }
+          if(!vis[i]){
+            dfs(i, vis, rec);
+              if(found==1){  fl=1;
+                 break;}
+             else ans.clear();
+            }
+          
     }
-   // dfs(1, 0, -1);
-    if(cycle_mila==0){
+    if(!found){
         cout<<"IMPOSSIBLE\n";
         return;
     }
     cout<<ans.size()<<"\n";
+    reverse(ans.begin(), ans.end());
     for(int i=0; i<ans.size(); i++) cout<<ans[i]<<" ";
-    cout<<"\n";
+   
 }
 
 signed main(){
@@ -83,7 +85,7 @@ signed main(){
     cin.tie(NULL);
     cout.tie(NULL);
     int tc=1;
-    //cin>>tc;
+   // cin>>tc;
     for(int i=1; i<=tc; i++){
         //cout << "Case #" << i  << ": ";
         solve();

@@ -19,23 +19,28 @@ int pown(int x, int y){
     return res;
 }
 unordered_map<int, vector<int>> edge;
+unordered_map<int, set<int>> s;
 int color[200010];
 int ans[200010];
-void dfs(int src){
+void dfs(int src, int par){
     
-    set<int> s;
-    s.insert(color[src]);
+    s[src].insert(color[src]);
     for(int x:edge[src]){
-        dfs(x);
-        s.insert(color[x]);
+        if(par==x) continue;
+        dfs(x, src);
+        
+        if(s[x].size()>s.[src].size()) swap(s[x], s[src]);
+        for(int i:s[x]){
+            s[src].insert(i);
+        }
     }
-    ans[src]=s.size();
+    ans[src]=s[src].size();
 }
 void solve(){
      int n;
      cin>>n;
 
-    
+     color[0]=-1;
      for(int i=1; i<=n; i++) cin>>color[i];
 
      for(int i=0; i<n-1; i++){
@@ -43,8 +48,9 @@ void solve(){
          cin>>a>>b;
 
          edge[a].push_back(b);
+         edge[b].push_back(a);
      }
-     dfs(1);
+     dfs(1,-1);
      for(int i=1; i<=n; i++) cout<<ans[i]<<" ";
      cout<<"\n";
 }

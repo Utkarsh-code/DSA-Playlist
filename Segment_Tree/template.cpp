@@ -27,24 +27,6 @@ int mul(int a, int b) {
     return (int) a * b % mod;
 }
 void solve(){
-  int n;
-  cin>>n;
-
-  int sum=0;
-  for(int i=0; i<n; i++){
-      int num;
-      cin>>num;
-      sum=(sum+mod+num)%mod;
-  }
- int q;
- cin>>q;
-
- for(int i=1; i<=q; i++){
-     int x;
-     cin>>x;
-     int ans=mul(pown(2, i), sum);
-     cout<<ans<<"\n";
- }
          
 }
 

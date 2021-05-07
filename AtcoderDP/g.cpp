@@ -25,6 +25,7 @@ void dfs(int i){
    vis[i]=1;
 
     for(auto nxnode:edge[i]){
+     // dis[nxnode]=max(dis[nxnode], dis[i]+1);
       if(vis[nxnode]==0) dfs(nxnode);
       dis[i]=max(dis[i], 1+dis[nxnode]);
     }
@@ -40,15 +41,15 @@ void solve(){
       edge[a].push_back(b);
       indegree[b]++;
   }
-  /*memset(vis, 0, sizeof(vis));
+  memset(vis, 0, sizeof(vis));
   for(int i=1; i<=n; i++){
       if(vis[i]==0)
       dfs(i);
   }
     int ans=*max_element(dis, dis+n+1);
-    cout<<ans<<"\n";  */
+    cout<<ans<<"\n";  
     
-    queue<int>q;
+   /* queue<int>q;
     for(int i=1; i<=n; i++){
         if(indegree[i]==0) {q.push(i); dis[i]=0;}
     } 
@@ -65,7 +66,7 @@ void solve(){
         }
     }
     int ans=*max_element(dis, dis+n+2);
-    cout<<ans<<"\n";
+    cout<<ans<<"\n";*/
 }
 
 signed main(){
