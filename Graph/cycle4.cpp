@@ -42,7 +42,7 @@ void solve(){
         int a, b, w;
         cin>>a>>b>>w;
 
-        edge[a].push_back({b, -w});
+        edge[a].push_back({b, w});
     
     }
    
@@ -65,6 +65,7 @@ void solve(){
        }
    }
   // for(int i=1; i<=n; i++) cout<<dis[i]<<" ";
+  vector<int> ans;
    for(int ite=1; ite<n; ite++){
    int j=1;
    while(j<=n){
@@ -75,15 +76,20 @@ void solve(){
            if(dis[j]==inf) continue;
            if(dis[node]>d+dis[j]){
                 dis[node]=ninf;
+                ans.push_back(node);
            }
        }
        j++;
    }
    }
   // for(int i=1; i<=n; i++) cout<<dis[i]<<" ";
-   int ans=dis[n];
-   if(ans==ninf) ans=1;
-   cout<<(-1)*ans<<"\n";
+   if(ans.size()==0){
+       cout<<"NO\n";
+       return;
+   }
+
+   cout<<"YES\n";
+   for(int i=0; i<ans.size(); i++) cout<<ans[i]<<" ";
 }
 
 signed main(){
