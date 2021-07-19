@@ -9,7 +9,7 @@ void dfs(int node, string sam, vector<vector<int>>&nxt, vector<bool> &terminal){
     for(int i=0; i<26; i++){
         int tmp=nxt[node][i];
         if(tmp!=0 && terminal[tmp]){
-            sam+=char(i+'a');
+            sam.push_back(char(i+'a'));
             dfs(tmp, sam, nxt, terminal);
             sam.pop_back();
         }

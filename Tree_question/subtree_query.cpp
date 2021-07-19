@@ -87,7 +87,7 @@ void solve(){
      }
      dfs(1, -1);
      vector<int> range[n+1];
-     for(int i=0; i<s.size(); i++){
+     for(int i=0; i<s.size(); i++){                   //range[x][0]----> intime of node x;   &&  range[x][1]-----> outtime of node x;
          range[s[i]].push_back(i+1);
      }
 

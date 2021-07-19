@@ -3,7 +3,8 @@ using namespace std;
 #define  int long long 
 #define ff first
 #define ss second
-#define pii pair<int, int>
+#define pb push_back
+#define pi pair<int, int>
 int mod=1e9+7;
 int inf=1e18;
 int ninf=-1e18;
@@ -19,17 +20,26 @@ int pown(int x, int y){
     return res;
 }
 void solve(){
-     cout<<"utk ";
+     int n;
+     cin>>n;
+    
+    int ans=0;
+     int y=sqrt(n);
+     if(y*y==n) ans=y;
+     else ans=y+1;
+
+     cout<<ans<<"\n";
 }
  
 signed main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int tc=1;
-   //cin>>tc;
+    int tc;
+    cin>>tc;
     for(int i=1; i<=tc; i++){
         //cout << "Case #" << i  << ": ";
+        cout<<setprecision(10)<<fixed;
         solve();
     }
     return 0;
