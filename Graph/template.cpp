@@ -29,7 +29,7 @@ signed main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int tc;
+    int tc=1;
     cin>>tc;
     for(int i=1; i<=tc; i++){
         //cout << "Case #" << i  << ": ";
